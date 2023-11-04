@@ -1,0 +1,33 @@
+# .gitignore for SBT-based Scala projects
+
+# Compiled class files, JARs, etc.
+/target/
+/project/target/
+/project/project/
+/dist/
+
+# Logs
+logs/
+*.log
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iml
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+
+# IDE - VS Code
+.vscode/
+
+# OS-specific
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# User-specific
+.history
+.session
+.cache
+
