@@ -25,28 +25,19 @@ object Main {
       verticesList.map(node => (node.id.toLong, node))
     )
 
-    // Assuming you have a list of edges in the form of pairs of NodeObjects
+    // We have a list of edges in the form of pairs of NodeObjects
     val edgePairs: List[(NodeObject, NodeObject)] = edgeListItem.asScala.toList.map(ep => (ep.nodeU(), ep.nodeV()))
 
     // Convert NodeObject pairs to Edge instances by referencing the unique IDs
     val edges: RDD[Edge[Unit]] = sc.parallelize(
       edgePairs.map { case (src, dst) =>
-        Edge(src.id.toLong, dst.id.toLong, ()) // EdgeProperty is a placeholder for your edge property type
+        Edge(src.id.toLong, dst.id.toLong, ()) // EdgeProperty is a placeholder for edge property type
       }
     )
 
     // Convert list to RDD
     val verticesRDD: RDD[(VertexId, NodeObject)] = sc.parallelize(verticesList.map(node => (node.id.toLong, node)))
 
-    // Assuming you have a list of edges as tuples (you will need to map from EndpointPair to Tuple)
-    val edgesList: List[(Int, Int)] = List(
-      (1, 264) // Replace with your actual edges represented as tuples (sourceId, destId)
-    )
-
-    // Convert list to RDD
-    val edgesRDD: RDD[Edge[Unit]] = sc.parallelize(edgesList.map { case (srcId, dstId) =>
-      Edge(srcId, dstId, ())
-    })
 
     val graph: Graph[NodeObject, Unit] = Graph(vertices, edges)
 
@@ -179,17 +170,17 @@ object Main {
     graphList.add(create_graph(sc, nodeList.get(0), edgeList.get(0)))
     graphList.add(create_graph(sc, nodeList.get(1), edgeList.get(1)))
 
-    // Your graph definitions
+    // graph definitions
     val graph1: Graph[NodeObject, Unit] = graphList.get(0)
     val graph2: Graph[NodeObject, Unit] = graphList.get(1)
 
     // Execute the random walk function
-    val maxSteps = 1000 // or another number based on your graph size or requirements
-    // You would then call the function like this:
+    val maxSteps = 1000 // random value
+
     val (truePositives, falsePositives, trueNegatives, falseNegatives) =
       randomWalkWithCompleteMetrics(graph1, graph2, 100, valuableNodeList)
 
-    // Assuming you've already computed truePositives, falsePositives, trueNegatives, and falseNegatives
+
     val (accuracy, precision, recall) = calculateMetrics(truePositives, falsePositives, trueNegatives, falseNegatives)
 
     println(s"Accuracy: $accuracy")
