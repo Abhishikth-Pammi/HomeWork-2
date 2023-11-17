@@ -1,0 +1,11 @@
+Student: Abhishikth Pammi
+
+=> No scalatests = -1%
+=> No logging = -1%
+=> Use of while loop = -0.1%
+=> No AWS EMR deployment = -0.5%
+
+Good attempt. I liked the explanation in your video. However, I expected to see some comments that I made for the last homework incorporated here. These points are essential to ensure full points for homeworks, and I would hope to see them in the third assignment.
+
+
+Final Grade: 12.4%
